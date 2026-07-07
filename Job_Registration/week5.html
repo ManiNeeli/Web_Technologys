@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Job Registration Form</title>
+</head>
+<body>
+
+<h2 align="center">Job Registration Form</h2>
+
+<form onsubmit="return validateForm()">
+
+<table align="center" cellpadding="8">
+
+<tr>
+    <td>Name:</td>
+    <td><input type="text" id="name"></td>
+</tr>
+
+<tr>
+    <td>Email:</td>
+    <td><input type="text" id="email"></td>
+</tr>
+
+<tr>
+    <td>Contact Number:</td>
+    <td><input type="text" id="contact"></td>
+</tr>
+
+<tr>
+    <td>Qualification:</td>
+    <td>
+        <select>
+            <option>B.Tech</option>
+            <option>B.Sc</option>
+            <option>B.Com</option>
+            <option>MCA</option>
+        </select>
+    </td>
+</tr>
+
+<tr>
+    <td>Gender:</td>
+    <td>
+        <input type="radio" name="gender"> Male
+        <input type="radio" name="gender"> Female
+    </td>
+</tr>
+
+<tr>
+    <td colspan="2" align="center">
+        <input type="submit" value="Register">
+        <input type="reset" value="Reset">
+    </td>
+</tr>
+
+</table>
+
+</form>
+
+<h3 align="center" id="message"></h3>
+
+<script>
+
+function validateForm()
+{
+    var name = document.getElementById("name").value;
+    var email = document.getElementById("email").value;
+    var contact = document.getElementById("contact").value;
+    var message = document.getElementById("message");
+
+    var namePattern = /^[A-Za-z ]+$/;
+    var emailPattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+    var contactPattern = /^[6-9][0-9]{9}$/;
+
+    if(name == "")
+    {
+        message.innerHTML = "Name cannot be empty";
+        message.style.color = "red";
+        return false;
+    }
+
+    if(!namePattern.test(name))
+    {
+        message.innerHTML = "Enter a valid name";
+        message.style.color = "red";
+        return false;
+    }
+
+    if(email == "")
+    {
+        message.innerHTML = "Email cannot be empty";
+        message.style.color = "red";
+        return false;
+    }
+
+    if(!emailPattern.test(email))
+    {
+        message.innerHTML = "Enter a valid email address";
+        message.style.color = "red";
+        return false;
+    }
+
+    if(contact == "")
+    {
+        message.innerHTML = "Contact number cannot be empty";
+        message.style.color = "red";
+        return false;
+    }
+
+    if(!contactPattern.test(contact))
+    {
+        message.innerHTML = "Enter a valid 10-digit contact number";
+        message.style.color = "red";
+        return false;
+    }
+
+    message.innerHTML = "Registered Successfully";
+    message.style.color = "green";
+
+    return false;
+}
+
+</script>
+
+</body>
+</html>
