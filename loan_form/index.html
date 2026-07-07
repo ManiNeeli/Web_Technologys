@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bank Loan Form</title>
+</head>
+<body>
+<h1>Bank Loan Form</h1>
+<form>
+
+Name :
+<input type="text" id="name" required>
+<br><br>
+
+Occupation :
+<input type="text" id="occupation" required>
+<br><br>
+
+Loan Amount :
+<input type="number" id="loan" required>
+<br><br>
+
+Rate of Interest (%) :
+<input type="number" id="rate" required>
+<br><br>
+
+Tenure (Years) :
+<input type="number" id="time" value="1" required>
+<br><br>
+
+<input type="button" value="Calculate EMI" onclick="calculateEMI()">
+<input type="reset" value="Reset">
+
+</form>
+
+<h2>EMI Information</h2>
+
+<p id="result"></p>
+
+<script>
+
+function calculateEMI()
+{
+    var name = document.getElementById("name").value;
+    var occupation = document.getElementById("occupation").value;
+    var loan = parseFloat(document.getElementById("loan").value);
+    var rate = parseFloat(document.getElementById("rate").value);
+    var time = parseFloat(document.getElementById("time").value);
+
+    var monthlyRate = rate / 12 / 100;
+    var months = time * 12;
+
+    var emi = (loan * monthlyRate * Math.pow(1 + monthlyRate, months)) /
+              (Math.pow(1 + monthlyRate, months) - 1);
+
+    document.getElementById("result").innerHTML =
+        "Name : " + name + "<br>" +
+        "Occupation : " + occupation + "<br>" +
+        "Loan Amount : ₹" + loan + "<br>" +
+        "Rate of Interest : " + rate + "%<br>" +
+        "Tenure : " + time + " Years<br><br>" +
+        "<b>Monthly EMI : ₹" + emi.toFixed(2) + "</b>";
+}
+
+</script>
+
+</body>
+</html>
